@@ -34,8 +34,8 @@
                         </label>
                         <span class="text-muted">Calculations are real-time.</span>
 
-                        <div class="cont" style="flex-direction: column;">
-                            <button class="ui button look-text color-brand" id="adv-b">
+                        <div class="cont" style="flex-direction: column; padding:10px;">
+                            <button class="ui button look-outlined color-brand" id="adv-b">
                                 Advanced
                             </button>
                         </div>
@@ -80,7 +80,7 @@
                                     It will take you between AMT1 to AMT2 messages to get to this level.
                                 </p>
 
-                                <div class="loader" style="--value: 50%" id="prog"></div>
+                                <div class="loader" style="--value: 50%; margin-bottom: 10px;" id="prog"></div>
                             </container>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                 let perc = (currAmount / amount) * 100;
                 if (perc > 100) perc = 100;
 
-                query("#prog").setAttribute("style", `--value:${(perc)+"%"}`)
+                query("#prog").setAttribute("style", `--value:${(perc)+"%"}; margin-bottom: 10px;`)
             }
 
             query("#des-level").addEventListener("input", function(){
