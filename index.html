@@ -124,8 +124,7 @@
                 if (level == "") level = 0;
                 if (currAmount == "") currAmount = 0;
 
-                let amount = calculateLevel(level);
-                level += 1;
+                let amount = calculateLevel(+level-1);
 
                 query("#main").classList.add("active");
                 query("#lvl").innerHTML = `Level ${level} requires ${amount} XP.`
