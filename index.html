@@ -1,0 +1,149 @@
+<html>
+
+<head>
+    <title>
+        MEE6 Level Calculator
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="rsgui.css">
+    <script src="rsgui.min.js"></script>
+</head>
+
+<body class="ui app">
+    <div class="ui content full-height">
+        <div class="ui container full-height lt-lg-scroll">
+            <div class="ui row full-height">
+                <div class="ui col sm-12 md-12 lg-6 xl-4 pr full-height lt-lg-fit-content" style="overflow-y: auto;">
+                    <div class="line"></div>
+
+                    <div class="con cent">
+                        <h3>
+                            MEE6 Level Calculator
+                        </h3>
+                        <label class="ui textfield">
+                            <span class="ui textfield-label">
+                                Your Desired Level
+                            </span>
+                            <input class="ui textfield-input" id="des-level" type="number">
+                            <span class="ui textfield-line"></span>
+                        </label>
+                        <span class="text-muted">Calculations are real-time.</span>
+
+                        <div class="cont" style="flex-direction: column;">
+                            <button class="ui button look-text color-brand" id="adv-b">
+                                Advanced
+                            </button>
+                        </div>
+
+                        <container class="hidden" id="adv">
+                            <label class="ui textfield">
+                                <span class="ui textfield-label">
+                                    Current XP
+                                </span>
+                                <input class="ui textfield-input" id="current-xp">
+                                <span class="ui textfield-line"></span>
+                            </label>
+                        </container>
+
+                        <div class="ui spacer"></div>
+
+                        <p class="text-muted" style="margin-bottom: 0;">
+                            Need help? <a href="htts://discord.gg/mee6">Join MEE6 support</a> <br/>
+                            Need an XP chart? <a href="https://drive.google.com/file/d/0BxSb4J-2Q2eobTlyRkFZSW9PSDQ/view">View the spreadsheet</a>
+                        </p>    
+                        <div class="ui divider"></div>
+                        <p class="text-muted">
+                            This site is not affiliated with mee6.xyz. <br/>
+                            The creator of this site (RealSGII2) is not a staff member or contributer to MEE6.
+                        </p>
+                    </div>
+                </div>
+                <div class="ui col sm-12 md-12 lg-6 xl-8 main full-height lt-lg-fit-content" id="main" style="background-image: url('https://picsum.photos/1920/1080?random');">
+                    <div class="main-c">
+                        <div class="main-text">
+                            <h4 id="lvl">
+                                Level LVL require AMT XP.
+                            </h4>
+                            <container id="adv-c" class="hidden">
+                                <p id="aleft">
+                                    You require AMT more XP to reach this level.
+                                </p>
+
+                                <div class="ui divider"></div>
+
+                                <p id="ato">
+                                    It will take you between AMT1 to AMT2 messages to get to this level.
+                                </p>
+
+                                <div class="loader" style="--value: 50%" id="prog"></div>
+                            </container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateLevel(lvl) {
+            return 5 * (Math.pow(lvl, 2)) + 50 * lvl + 100 
+        }
+
+        window.addEventListener("load", function () {
+            const query = (where) => {
+                return document.querySelector(where);
+            }
+
+            Array.from(document.querySelectorAll('.ui.textfield')).forEach(a=>{
+                let textfield = new RSGUI.TextField(a);
+            })
+
+            query("#adv-b").addEventListener("click", function(){
+                query("#adv").classList.toggle("hidden");
+                query("#adv-c").classList.toggle("hidden");
+            })
+
+            function calculate() {
+                let level = query("#des-level").value;
+                let currAmount = query("#current-xp").value;
+
+                if (level == "") level = 0;
+                if (currAmount == "") currAmount = 0;
+
+                let amount = calculateLevel(level);
+
+                query("#main").classList.add("active");
+                query("#lvl").innerHTML = `Level ${level} requires ${amount} XP.`
+
+                let left = amount - (+currAmount);
+
+                query("#aleft").innerHTML = `You require ${left} more XP to reach this level.`
+
+                let amt1 = Math.round((amount - currAmount) / 15)+1;
+                let amt2 = Math.round((amount - currAmount) / 25)+1;
+
+                query("#ato").innerHTML = `It will take you between ${amt2} to ${amt1} messages to get to this level`
+                
+                let perc = (currAmount / amount) * 100;
+                if (perc > 100) perc = 100;
+
+                query("#prog").setAttribute("style", `--value:${(perc)+"%"}`)
+            }
+
+            query("#des-level").addEventListener("input", function(){
+                calculate();
+            })
+
+            query("#current-xp").addEventListener("input", function(){
+                calculate();
+            })
+        });
+    </script>
+</body>
+
+</html>
