@@ -42,7 +42,10 @@
                         </label>
                         <span class="text-muted">Calculations are real-time.</span>
 
-                        <div class="cont" style="flex-direction: column; padding:10px;">
+                        <div class="cont" style="padding:10px;">
+                            <button class="ui button look-text color-brand" id="modalOpen">
+                                Useful Stuff
+                            </button>
                             <button class="ui button look-outlined color-brand" id="adv-b">
                                 Advanced
                             </button>
@@ -66,11 +69,76 @@
                     </div>
                 </div>
                 <div class="ui col sm-12 md-12 lg-6 xl-8 main full-height lt-lg-fit-content" id="main" style="background-image: url('https://picsum.photos/1920/1080?random');">
-                    <div class="main-c">
+                    <div class="main-c" style="position: relative;">
+                        <div class="ui modal" id="modal">
+                            <div class="ui modal-scrim"></div>
+                            <div class="ui modal-window size-large elevation-12">
+                                <div class="ui modal-body">
+                                    <h5>Some Useful Stuff</h5>
+                                        <div class="ui container" style="text-align: left;">
+                                            <div class="ui row container-row">
+                                                <div class="ui col sm-12 md-6 lg-6 xl-6">
+                                                    <h6>
+                                                        Links
+                                                    </h6>
+                                                    <p class="text-muted">
+                                                        Need help? <a href="htts://discord.gg/mee6">Join MEE6 support</a> <br/>
+                                                        Need an XP chart? <a href="https://drive.google.com/file/d/0BxSb4J-2Q2eobTlyRkFZSW9PSDQ/view">View the spreadsheet</a> <br/>
+                                                    </p>
+                                                </div>
+                                                <div class="ui col sm-12 md-6 lg-6 xl-6">
+                                                    <h6>
+                                                        Calculate it yourself
+                                                    </h6>
+                                                    <p class="text-muted">
+                                                        You could calculate this yourself with the formula: <b>5 * (lvl ^ 2) + 50 * lvl + 100</b> where <b>lvl</b> is your current level.
+                                                    </p>
+                                                </div>
+                                                <!--<div class="ui col sm-12 md-6 lg-4 xl-4">
+                                                    
+                                                </div>-->
+                                            </div>
+                                            <div class="ui row container-row">
+                                                <div class="ui col sm-12 md-6 lg-6 xl-6">
+                                                    <h6>
+                                                        Maximum
+                                                    </h6>
+                                                    <p class="text-muted">
+                                                        The maximum level you could get is 1,768,802. <br/>
+                                                        You could only earn up to 15,643,373,328,155 XP.
+                                                    </p>
+                                                </div>
+                                                <!--<div class="ui col sm-12 md-6 lg-6 xl-6">
+                                                    <h6>
+                                                        Calculate it yourself
+                                                    </h6>
+                                                    <p class="text-muted">
+                                                        You could calculate this yourself with the formula: <b>5 * (lvl ^ 2) + 50 * lvl + 100</b> where <b>lvl</b> is your current level.
+                                                    </p>
+                                                </div>
+                                                <div class="ui col sm-12 md-6 lg-4 xl-4">
+                                                    
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                        <img style="max-width: 30%" src="./RSG.png">
+                                </div>
+                                <div class="ui modal-actions">
+                                    <div class="ui spacer"></div>
+                                    <button class="ui button look-text color-dark" id="modalClose">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="main-text">
                             <h4 id="lvl">
                                 Level LVL require AMT XP.
                             </h4>
+                            <p id="lnext">
+                                From level LVL-1 to LVL, you need AMT XP.
+                            </p>
                             <container id="adv-c" class="hidden">
                                 <p id="aleft">
                                     You require AMT more XP to reach this level.
@@ -84,37 +152,6 @@
 
                                 <div class="loader" style="--value: 50%; margin-bottom: 10px;" id="prog"></div>
                             </container>
-
-                            <div class="ui plain fluid card elevation-12" style="margin: 0 40px; margin-top: 40px; text-align:left; width: calc(100% - 80px) !important;">
-                                <div class="card-body">
-                                    <h5>Some Useful Stuff</h5>
-                                    <div class="ui container">
-                                        <div class="ui row container-row">
-                                            <div class="ui col sm-12 md-6 lg-6 xl-6">
-                                                <h6>
-                                                    Links
-                                                </h6>
-                                                <p class="text-muted">
-                                                    Need help? <a href="htts://discord.gg/mee6">Join MEE6 support</a> <br/>
-                                                    Need an XP chart? <a href="https://drive.google.com/file/d/0BxSb4J-2Q2eobTlyRkFZSW9PSDQ/view">View the spreadsheet</a> <br/>
-                                                </p>
-                                            </div>
-                                            <div class="ui col sm-12 md-6 lg-6 xl-6">
-                                                <h6>
-                                                    Calculate it yourself
-                                                </h6>
-                                                <p class="text-muted">
-                                                    You could calculate this yourself with the formula: <b>5 * (lvl ^ 2) + 50 * lvl + 100</b> where <b>lvl</b> is your current level.
-                                                </p>
-                                            </div>
-                                            <!--<div class="ui col sm-12 md-6 lg-4 xl-4">
-                                                
-                                            </div>-->
-                                        </div>
-                                    </div>
-                                    <img style="max-width: 30%" src="./RSG.png">
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -124,6 +161,15 @@
 
     <script>
         function calculateLevel(lvl) {
+            let res = 0;
+
+            for (let i = 0; i < lvl; i++) {
+                res += 5 * (Math.pow(i, 2)) + 50 * i + 100
+            }
+            return res;
+        }
+
+        function calculateToNextLevel(lvl) {
             return 5 * (Math.pow(lvl, 2)) + 50 * lvl + 100 
         }
 
@@ -161,10 +207,11 @@
                 if (level == "") level = 0;
                 if (currAmount == "") currAmount = 0;
 
-                let amount = calculateLevel(+level-1);
+                let amount = calculateLevel(+level);
 
                 query("#main").classList.add("active");
                 query("#lvl").innerHTML = `Level ${level} requires ${amount} XP.`
+                query("#lnext").innerHTML = `From level ${level-1} to ${level}, you need ${calculateToNextLevel(+level-1)} XP.`
 
                 let left = amount - (+currAmount);
 
@@ -187,6 +234,16 @@
 
             query("#current-xp").addEventListener("input", function(){
                 calculate();
+            })
+
+            let modal = new RSGUI.Modal(query("#modal"));
+
+            query("#modalOpen").addEventListener("click", function(){
+                modal.open();
+            })
+
+            query("#modalClose").addEventListener("click", function(){
+                modal.close();
             })
         });
     </script>
