@@ -145,6 +145,19 @@
                 let level = query("#des-level").value;
                 let currAmount = query("#current-xp").value;
 
+                if (level !== "") {
+                    if (+level > query("#des-level").max) query("#des-level").value = query("#des-level").max;
+                    if (+level < 0) query("#des-level").value = 0;
+                }
+
+                if (currAmount !== "") {
+                    if (+currAmount > query("#current-xp").max) query("#current-xp").value = query("#current-xp").max;
+                    if (+currAmount < 0) query("#current-xp").value = 0;
+                }
+
+                level = query("#des-level").value;
+                currAmount = query("#current-xp").value;
+
                 if (level == "") level = 0;
                 if (currAmount == "") currAmount = 0;
 
