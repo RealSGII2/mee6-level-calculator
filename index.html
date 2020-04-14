@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -6,11 +7,12 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta name="theme-color" content="#62d3f5"/>
-    <meta name="og:title" content="MEE6 Level Calculator"/>
-    <meta name="og:image" content="https://cdn.discordapp.com/emojis/447824618158555137.png?v=1"/>
-    <meta name="og:site_name" content="RealSGII2"/>
-    <meta name="og:description" content="An easy to use calculator for getting how much XP and how many messages you need to get to a level."/>
+    <meta name="theme-color" content="#62d3f5" />
+    <meta name="og:title" content="MEE6 Level Calculator" />
+    <meta name="og:image" content="https://cdn.discordapp.com/emojis/447824618158555137.png?v=1" />
+    <meta name="og:site_name" content="RealSGII2" />
+    <meta name="og:description"
+        content="An easy to use calculator for getting how much XP and how many messages you need to get to a level." />
 
     <link rel="icon" type="image/png" href="https://cdn.discordapp.com/emojis/447824618158555137.png?v=1">
 
@@ -30,7 +32,7 @@
                     <div class="line"></div>
 
                     <div class="con cent">
-                        <h3>
+                        <h3 style="font-size:48px;">
                             MEE6 Level Calculator
                         </h3>
                         <label class="ui textfield">
@@ -40,6 +42,10 @@
                             <input class="ui textfield-input" id="des-level" type="number" min="0" max="1768802">
                             <span class="ui textfield-line"></span>
                         </label>
+
+                        <label id="xpr">XP Rate:  1</label>
+                        <input type="range" min="0" max="7" value="3" id="slide"/>
+
                         <span class="text-muted">Calculations are real-time.</span>
 
                         <div class="cont" style="padding:10px;">
@@ -51,12 +57,18 @@
                             </button>
                         </div>
 
+                        <!--
+                            Todo: Add XP rate option. 
+                                Use this to correctly calculate messages based on guilds with premium.
+                        -->
+
                         <container class="hidden" id="adv">
                             <label class="ui textfield">
                                 <span class="ui textfield-label">
                                     Current XP
                                 </span>
-                                <input class="ui textfield-input" id="current-xp" type="number" min="0" max="15643373328155">
+                                <input class="ui textfield-input" id="current-xp" type="number" min="0"
+                                    max="15643373328155">
                                 <span class="ui textfield-line"></span>
                             </label>
                         </container>
@@ -68,47 +80,52 @@
                         </p>
                     </div>
                 </div>
-                <div class="ui col sm-12 md-12 lg-6 xl-8 main full-height lt-lg-fit-content" id="main" style="background-image: url('https://picsum.photos/1920/1080?random');">
+                <div class="ui col sm-12 md-12 lg-6 xl-8 main full-height lt-lg-fit-content" id="main"
+                    style="background-image: url('https://picsum.photos/1920/1080?random');">
                     <div class="main-c" style="position: relative;">
                         <div class="ui modal" id="modal">
                             <div class="ui modal-scrim"></div>
                             <div class="ui modal-window size-large elevation-12">
                                 <div class="ui modal-body">
                                     <h5>Some Useful Stuff</h5>
-                                        <div class="ui container" style="text-align: left;">
-                                            <div class="ui row container-row">
-                                                <div class="ui col sm-12 md-6 lg-6 xl-6">
-                                                    <h6>
-                                                        Links
-                                                    </h6>
-                                                    <p class="text-muted">
-                                                        Need help? <a href="htts://discord.gg/mee6">Join MEE6 support</a> <br/>
-                                                        Need an XP chart? <a href="https://drive.google.com/file/d/0BxSb4J-2Q2eobTlyRkFZSW9PSDQ/view">View the spreadsheet</a> <br/>
-                                                    </p>
-                                                </div>
-                                                <div class="ui col sm-12 md-6 lg-6 xl-6">
-                                                    <h6>
-                                                        Calculate it yourself
-                                                    </h6>
-                                                    <p class="text-muted">
-                                                        You could calculate this yourself with the formula: <b>5 * (lvl ^ 2) + 50 * lvl + 100</b> where <b>lvl</b> is your current level.
-                                                    </p>
-                                                </div>
-                                                <!--<div class="ui col sm-12 md-6 lg-4 xl-4">
+                                    <div class="ui container" style="text-align: left;">
+                                        <div class="ui row container-row">
+                                            <div class="ui col sm-12 md-6 lg-6 xl-6">
+                                                <h6>
+                                                    Links
+                                                </h6>
+                                                <p class="text-muted">
+                                                    Need help? <a href="htts://discord.gg/mee6">Join MEE6 support</a>
+                                                    <br />
+                                                    Need an XP chart? <a
+                                                        href="https://drive.google.com/file/d/0BxSb4J-2Q2eobTlyRkFZSW9PSDQ/view">View
+                                                        the spreadsheet</a> <br />
+                                                </p>
+                                            </div>
+                                            <div class="ui col sm-12 md-6 lg-6 xl-6">
+                                                <h6>
+                                                    Calculate it yourself
+                                                </h6>
+                                                <p class="text-muted">
+                                                    You could calculate this yourself with the formula: <b>5 * (lvl ^ 2)
+                                                        + 50 * lvl + 100</b> where <b>lvl</b> is your current level.
+                                                </p>
+                                            </div>
+                                            <!--<div class="ui col sm-12 md-6 lg-4 xl-4">
                                                     
                                                 </div>-->
+                                        </div>
+                                        <div class="ui row container-row">
+                                            <div class="ui col sm-12 md-6 lg-6 xl-6">
+                                                <h6>
+                                                    Maximum
+                                                </h6>
+                                                <p class="text-muted">
+                                                    The maximum level you could get is 1,768,802. <br />
+                                                    You could only earn up to 15,643,373,328,155 XP.
+                                                </p>
                                             </div>
-                                            <div class="ui row container-row">
-                                                <div class="ui col sm-12 md-6 lg-6 xl-6">
-                                                    <h6>
-                                                        Maximum
-                                                    </h6>
-                                                    <p class="text-muted">
-                                                        The maximum level you could get is 1,768,802. <br/>
-                                                        You could only earn up to 15,643,373,328,155 XP.
-                                                    </p>
-                                                </div>
-                                                <!--<div class="ui col sm-12 md-6 lg-6 xl-6">
+                                            <!--<div class="ui col sm-12 md-6 lg-6 xl-6">
                                                     <h6>
                                                         Calculate it yourself
                                                     </h6>
@@ -119,9 +136,9 @@
                                                 <div class="ui col sm-12 md-6 lg-4 xl-4">
                                                     
                                                 </div>-->
-                                            </div>
                                         </div>
-                                        <img style="max-width: 30%" src="./RSG.png">
+                                    </div>
+                                    <img style="max-width: 30%" src="./RSG.png">
                                 </div>
                                 <div class="ui modal-actions">
                                     <div class="ui spacer"></div>
@@ -170,7 +187,7 @@
         }
 
         function calculateToNextLevel(lvl) {
-            return 5 * (Math.pow(lvl, 2)) + 50 * lvl + 100 
+            return 5 * (Math.pow(lvl, 2)) + 50 * lvl + 100
         }
 
         window.addEventListener("load", function () {
@@ -178,14 +195,23 @@
                 return document.querySelector(where);
             }
 
-            Array.from(document.querySelectorAll('.ui.textfield')).forEach(a=>{
+            Array.from(document.querySelectorAll('.ui.textfield')).forEach(a => {
                 let textfield = new RSGUI.TextField(a);
             })
 
-            query("#adv-b").addEventListener("click", function(){
+            query("#adv-b").addEventListener("click", function () {
                 query("#adv").classList.toggle("hidden");
                 query("#adv-c").classList.toggle("hidden");
             })
+
+            var values = [0.25, 0.5, 0.75, 1, 1.5, 2, 2.5, 3];    //values to step to
+
+            var input = query("#slide");
+
+            input.oninput = function(){
+                query("#xpr").innerHTML = `XP Rate: ${values[this.value]}`
+            };
+            input.oninput();
 
             function calculate() {
                 let level = query("#des-level").value;
@@ -211,38 +237,44 @@
 
                 query("#main").classList.add("active");
                 query("#lvl").innerHTML = `Level ${level} requires ${amount} XP.`
-                query("#lnext").innerHTML = `From level ${level-1} to ${level}, you need ${calculateToNextLevel(+level-1)} XP.`
+                query("#lnext").innerHTML = `From level ${level - 1} to ${level}, you need ${calculateToNextLevel(+level - 1)} XP.`
 
                 let left = amount - (+currAmount);
 
                 query("#aleft").innerHTML = `You require ${left} more XP to reach this level.`
 
-                let amt1 = Math.round((amount - currAmount) / 15)+1;
-                let amt2 = Math.round((amount - currAmount) / 25)+1;
+                let amt1 = Math.round((amount - currAmount) / (15 * values[input.value]));
+                let amt2 = Math.round((amount - currAmount) / (25 * values[input.value])) + 1;
+
+                if (amt1 * (15 * values[input.value]) < amount) amt1++;
 
                 query("#ato").innerHTML = `It will take you between ${amt2} to ${amt1} messages to get to this level`
-                
+
                 let perc = (currAmount / amount) * 100;
                 if (perc > 100) perc = 100;
 
-                query("#prog").setAttribute("style", `--value:${(perc)+"%"}; margin-bottom: 10px;`)
+                query("#prog").setAttribute("style", `--value:${(perc) + "%"}; margin-bottom: 10px;`)
             }
 
-            query("#des-level").addEventListener("input", function(){
+            query("#des-level").addEventListener("input", function () {
                 calculate();
             })
 
-            query("#current-xp").addEventListener("input", function(){
+            query("#current-xp").addEventListener("input", function () {
+                calculate();
+            })
+
+            input.addEventListener("input", function () {
                 calculate();
             })
 
             let modal = new RSGUI.Modal(query("#modal"));
 
-            query("#modalOpen").addEventListener("click", function(){
+            query("#modalOpen").addEventListener("click", function () {
                 modal.open();
             })
 
-            query("#modalClose").addEventListener("click", function(){
+            query("#modalClose").addEventListener("click", function () {
                 modal.close();
             })
         });
