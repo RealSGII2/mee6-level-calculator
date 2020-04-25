@@ -39,12 +39,9 @@
                             <span class="ui textfield-label">
                                 Your Desired Level
                             </span>
-                            <input class="ui textfield-input" id="des-level" type="number" min="0" max="1768802">
+                            <input class="ui textfield-input" id="des-level" type="number" min="0" max="1768801">
                             <span class="ui textfield-line"></span>
                         </label>
-
-                        <label id="xpr">XP Rate:  1</label>
-                        <input type="range" min="0" max="7" value="3" id="slide"/>
 
                         <span class="text-muted">Calculations are real-time.</span>
 
@@ -63,14 +60,17 @@
                         -->
 
                         <container class="hidden" id="adv">
-                            <label class="ui textfield">
+                            <label class="ui textfield" style="margin-bottom: 10px;">
                                 <span class="ui textfield-label">
                                     Current XP
                                 </span>
                                 <input class="ui textfield-input" id="current-xp" type="number" min="0"
-                                    max="15643373328155">
+                                    max="9223356379307802000">
                                 <span class="ui textfield-line"></span>
                             </label>
+
+                            <label id="xpr">XP Rate:  1</label>
+                            <input type="range" min="0" max="7" value="3" id="slide"/>
                         </container>
 
                         <div class="ui spacer"></div>
@@ -121,8 +121,8 @@
                                                     Maximum
                                                 </h6>
                                                 <p class="text-muted">
-                                                    The maximum level you could get is 1,768,802. <br />
-                                                    You could only earn up to 15,643,373,328,155 XP.
+                                                    The maximum level you could get is 1,768,801. <br />
+                                                    You could only earn up to 9,223,356,379,307,802,000 XP.
                                                 </p>
                                             </div>
                                             <!--<div class="ui col sm-12 md-6 lg-6 xl-6">
